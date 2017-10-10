@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title><%= title %></title>
+
+    <!-- Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  </head>
+  <body>
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Sekolah Koding Hacktiv8 Pondok Indah</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/teachers">Teachers</a></li>
+            <li><a href="/subjects">Subjects</a></li>
+            <li><a href="/students">Students</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 align = "center"><b>Students Data</b></h3><br>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <th>No</th>
+              <th>Full Name</th>
+              <th>Email</th>
+              <th>Subject</th>
+              <th>Options</th>
+            </thead>
+            <% var i = 1
+              dataStudent.forEach(function(item){ %>
+            <tbody>
+              <td><%= i %></td>
+              <td><%= item.getFullname()%></td>
+              <td><%= item.email %></td>
+              <td><a href="/students/<%=item.id%>/addsubject">Add Subject</a></td>
+              <td>
+                <a href="/students/edit/<%= item.id %>">Edit</a>
+                <a href="/students/delete/<%= item.id %>" onclick="return confirm('delete this student?')">Delete</a>
+              </td>
+            </tbody>
+            <% i++ }) %>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <button type="button" name="button" id="buttonAdd" class="btn btn-success">Add Student</button>
+        </div>
+        <div class="col-md-12">
+          <a href="/" style="margin-top:20px; display:inline-block"> << back to home </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+      var add = document.getElementById('buttonAdd')
+      add.addEventListener('click', function(){
+        location.href = '/students/add'
+      })
+    </script>
+  </body>
+</html>
